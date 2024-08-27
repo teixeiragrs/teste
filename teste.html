@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .banner {
+            background-color: #eee;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .banner h2 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .product-item {
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            width: 200px;
+        }
+
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .gallery img {
+            max-width: 200px;
+            height: auto;
+            border: 1px solid #ddd;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #cart, #login, #search, #reviews {
+            margin: 20px;
+        }
+
+        .product-item:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Loja Online</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#products">Produtos</a></li>
+                <li><a href="#gallery">Galeria</a></li>
+                <li><a href="#contact">Contato</a></li>
+                <li><a href="#cart">Carrinho</a></li>
+                <li><a href="#login">Login</a></li>
+                <li><a href="#search">Buscar</a></li>
+                <li><a href="#reviews">Avaliações</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="banner">
+            <h2>Bem-vindo à Nossa Loja</h2>
+            <p>Encontre os melhores produtos com ofertas incríveis!</p>
+        </div>
+    </section>
+
+    <section id="products">
+        <h2>Produtos</h2>
+        <div class="product-list">
+            <div class="product-item">
+                <img src="https://via.placeholder.com/200" alt="Produto 1">
+                <h3>Produto 1</h3>
+                <p>Descrição do Produto 1.</p>
+                <p>Preço: R$99,90</p>
+                <button onclick="addToCart('Produto 1', 99.90)">Comprar</button>
+            </div>
+            <div class="product-item">
+                <img src="https://via.placeholder.com/200" alt="Produto 2">
+                <h3>Produto 2</h3>
+                <p>Descrição do Produto 2.</p>
+                <p>Preço: R$149,90</p>
+                <button onclick="addToCart('Produto 2', 149.90)">Comprar</button>
+            </div>
+            <!-- Adicione mais produtos conforme necessário -->
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2>Galeria</h2>
+        <div class="gallery">
+            <img src="https://via.placeholder.com/200" alt="Imagem 1">
+            <img src="https://via.placeholder.com/200" alt="Imagem 2">
+            <!-- Adicione mais imagens conforme necessário -->
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contato</h2>
+        <form action="mailto:seuemail@dominio.com" method="post" enctype="text/plain">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="message">Mensagem:</label><br>
+            <textarea id="message" name="message" rows="4" required></textarea><br><br>
+
+            <input type="submit" value="Enviar">
+        </form>
+    </section>
+
+    <section id="cart">
+        <h2>Carrinho de Compras</h2>
+        <div id="cart-items"></div>
+        <p>Total: <span id="cart-total">R$0,00</span></p>
+        <button id="checkout">Finalizar Compra</button>
+    </section>
+
+    <section id="login">
+        <h2>Login</h2>
+        <form id="login-form">
+            <label for="login-email">Email:</label>
+            <input type="email" id="login-email" required><br><br>
+
+            <label for="login-password">Senha:</label>
+            <input type="password" id="login-password" required><br><br>
+
+            <button type="submit">Entrar</button>
+        </form>
+    </section>
+
+    <section id="search">
+        <h2>Pesquisar Produtos</h2>
+        <input type="text" id="search-input" placeholder="Digite o nome do produto">
+        <button id="search-button">Buscar</button>
+    </section>
+
+    <section id="reviews">
+        <h2>Avaliações</h2>
+        <form id="review-form">
+            <label for="review-name">Nome:</label>
+            <input type="text" id="review-name" required><br><br>
+
+            <label for="review-message">Comentário:</label><br>
+            <textarea id="review-message" rows="4" required></textarea><br><br>
+
+            <button type="submit">Enviar Avaliação</button>
+        </form>
+        <div id="reviews-list"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Loja Online. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        function addToCart(product, price) {
+            cart.push({ product, price });
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            cartItems.innerHTML = cart.map(item => `<p>${item.product}: R$${item.price}</p>`).join('');
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            cartTotal.textContent = `R$${total.toFixed(2)}`;
+        }
+
+        document.getElementById('checkout').addEventListener('click', function() {
+            alert('Finalizando a compra!');
+        });
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            alert(`Usuário ${email} logado com sucesso!`);
+        });
+
+        document.getElementById('search-button').addEventListener('click', function() {
+            const query = document.getElementById('search-input').value;
+            alert(`Buscando por "${query}"`);
+        });
+
+        document.getElementById('review-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('review-name').value;
+            const message = document.getElementById('review-message').value;
+            const reviewsList = document.getElementById('reviews-list');
+            reviewsList.innerHTML += `<p><strong>${name}</strong>: ${message}</p>`;
+            document.getElementById('review-form').reset();
+        });
+    </script>
+</body>
+</html>
